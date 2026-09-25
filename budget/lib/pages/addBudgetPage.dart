@@ -464,7 +464,8 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
         setAddedTransactionsOnly(true);
         setSelectedShared(true);
       } else {
-        openSnackbar(SnackbarMessage(title: "Only allowed in debug mode"));
+        openSnackbar(
+          SnackbarMessage(title: "Only available in development mode"));
       }
     }
   }

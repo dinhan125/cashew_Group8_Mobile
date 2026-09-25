@@ -311,6 +311,7 @@ class NavigationSidebarState extends State<NavigationSidebar> {
                                 navBarIconDataKey: "settings",
                                 currentPageIndex: selectedIndex,
                               ),
+                              ThemeToggleSidebarButton(),
                               NavigationSidebarButtonWithNavBarIconData(
                                 navBarIconDataKey: "about",
                                 currentPageIndex: selectedIndex,
@@ -591,6 +592,27 @@ class NavigationSidebarButtonWithNavBarIconData extends StatelessWidget {
             switchNavbar: true);
       },
       iconScale: navBarIconsData[navBarIconDataKey]?.iconScale ?? 1,
+    );
+  }
+}
+
+class ThemeToggleSidebarButton extends StatelessWidget {
+  const ThemeToggleSidebarButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    return NavigationSidebarButton(
+      icon: isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+      label: isDark ? "Light mode" : "Dark mode",
+      isSelected: false,
+      onTap: () async {
+        await updateSettings("forceFullDarkBackground", false,
+            updateGlobalState: false);
+        await updateSettings("theme", isDark ? "light" : "dark",
+            updateGlobalState: true);
+      },
+      popRoutes: false,
     );
   }
 }

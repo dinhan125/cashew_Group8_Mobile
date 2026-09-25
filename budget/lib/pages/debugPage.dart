@@ -37,7 +37,7 @@ class DebugPage extends StatelessWidget {
     return PageFramework(
       dragDownToDismiss: true,
       horizontalPaddingConstrained: true,
-      title: "Debug Flags",
+      title: "Advanced options",
       actions: [
         CustomPopupMenuButton(
           showButtons: true,

@@ -87,6 +87,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   _scrollListener() {
+    final bool shouldShowScrollToTop = _scrollController.offset > 240;
+    if (shouldShowScrollToTop != showElevation) {
+      setState(() {
+        showElevation = shouldShowScrollToTop;
+      });
+    }
     double percent = _scrollController.offset / (200);
     if (percent <= 1) {
       double offset = _scrollController.offset;
@@ -404,6 +410,23 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         height: 1,
                         color: Theme.of(context).colorScheme.background),
                   ],
+                ),
+              ),
+            ),
+            PositionedDirectional(
+              end: 16,
+              bottom: 24,
+              child: IgnorePointer(
+                ignoring: !showElevation,
+                child: AnimatedOpacity(
+                  opacity: showElevation ? 1 : 0,
+                  duration: const Duration(milliseconds: 220),
+                  child: FloatingActionButton.small(
+                    heroTag: "homeScrollToTop",
+                    tooltip: "Scroll to top",
+                    onPressed: scrollToTop,
+                    child: const Icon(Icons.keyboard_arrow_up_rounded),
+                  ),
                 ),
               ),
             ),

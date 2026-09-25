@@ -871,7 +871,7 @@ class ProductsState extends State<Products> {
                       title: "error-getting-products".tr(),
                       description: "error-getting-products-description".tr() +
                           (kDebugMode && tryStoreEnabled == false
-                              ? " Store disabled in debug mode! Enable `tryStoreEnabled`"
+                              ? " Store disabled in development mode! Enable `tryStoreEnabled`"
                               : ""),
                       icon: appStateSettings["outlinedIcons"]
                           ? Icons.warning_outlined
